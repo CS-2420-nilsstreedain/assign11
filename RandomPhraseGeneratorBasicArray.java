@@ -2,13 +2,11 @@ package comprehensive;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.Scanner;
+
 
 public class RandomPhraseGeneratorBasicArray {
 	HashMap<String, String[]> nonTerminals;
@@ -28,7 +26,8 @@ public class RandomPhraseGeneratorBasicArray {
 		rng = new Random();
 		
 		try {
-			reader = new BufferedReader(new FileReader(filename));
+			File file = new File(filename);
+			reader = new BufferedReader(new FileReader(file));
 		
 			String curr;
 			while ((curr = reader.readLine()) != null) {
@@ -36,7 +35,7 @@ public class RandomPhraseGeneratorBasicArray {
 				//skips over anything outside a curlybrace
 				if (curr.isBlank() == false && curr.charAt(0) == '{') {
 					String key = reader.readLine();
-					reader.mark(300000000);
+					reader.mark((int) file.length());
 					int count = 0;
 		
 					curr = reader.readLine();
