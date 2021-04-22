@@ -1,9 +1,9 @@
 package comprehensive;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -26,7 +26,6 @@ public class RandomPhraseGenerator {
 		rng = new Random();
 		
 		try {
-			File file = new File(filename);
 			reader = new BufferedReader(new FileReader(filename));
 		
 			String curr;
@@ -35,27 +34,16 @@ public class RandomPhraseGenerator {
 				//skips over anything outside a curlybrace
 				if (curr.isBlank() == false && curr.charAt(0) == '{') {
 					String key = reader.readLine();
-					reader.mark((int) file.length());
-					int count = 0;
+					ArrayList<String> prodRulesList = new ArrayList<>();
 		
 					curr = reader.readLine();
 					while (curr.charAt(0) != '}') {
-						count++;
+						prodRulesList.add(curr);
 						curr = reader.readLine();
 					}
 					
-					String[] prodRules = new String[count];
-					reader.reset();
-					
-					count = 0;
-					
-					curr = reader.readLine();
-					while (curr.charAt(0) != '}') {
-						prodRules[count++] = curr;
-						curr = reader.readLine();
-					}
-					
-					nonTerminals.put(key, prodRules);
+					String[] prodRules = new String[prodRulesList.size()];
+					nonTerminals.put(key, prodRulesList.toArray(prodRules));
 					
 				}	
 			}
