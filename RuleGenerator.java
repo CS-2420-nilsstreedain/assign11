@@ -13,7 +13,7 @@ public class RuleGenerator {
 	public static void generateRandomGrammar(int numNonTerminals, int numProdRules, int nonTerminalPerProd, double percentOfBaseRules) {
 	    PrintWriter out = null;
 	    try {
-	      out = new PrintWriter("/Users/nilsstreedain/eclipse-workspace/CS2420/src/comprehensive/RandomGrammar.g");
+	      out = new PrintWriter("src/comprehensive/RandomGrammar.g");
 	    } 
 	    catch (IOException e) {
 	      System.out.println(e);
