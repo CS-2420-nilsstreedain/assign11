@@ -1,7 +1,10 @@
 package comprehensive;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -11,7 +14,7 @@ public class RandomPhraseGenerator {
 	HashMap<String, ArrayList<String>> nonTerminals;
 
 	Random rng;
-	Scanner scan;
+	BufferedReader reader;
 	
 	public static void main(String[] args) {
 		RandomPhraseGenerator phraseGenerator = new RandomPhraseGenerator(args[0]);
@@ -25,28 +28,36 @@ public class RandomPhraseGenerator {
 		rng = new Random();
 		
 		try {
-			scan = new Scanner(new File(filename));
-		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
-			System.exit(0);
-		}
+			reader = new BufferedReader(new FileReader(filename));
 		
-		while (scan.hasNextLine()) {
-			String nextLine = scan.nextLine();
-
-			//skips over anything outside a curlybrace
-			if (nextLine.isBlank() == false && nextLine.charAt(0) == '{') {
-				String key = scan.nextLine();
-				ArrayList<String> prodRules = new ArrayList<>();
-
-				nextLine = scan.nextLine();
-				while (nextLine.charAt(0) != '}') {
-					prodRules.add(nextLine);
-					nextLine = scan.nextLine();
-				}
-				
-				nonTerminals.put(key, prodRules);
-			}	
+			String curr;
+			while ((curr = reader.readLine()) != null) {
+		
+				//skips over anything outside a curlybrace
+				if (curr.isBlank() == false && curr.charAt(0) == '{') {
+					String key = reader.readLine();
+					ArrayList<String> prodRules = new ArrayList<>();
+		
+					curr = reader.readLine();
+					while (curr.charAt(0) != '}') {
+						prodRules.add(curr);
+						curr = reader.readLine();
+					}
+					
+					nonTerminals.put(key, prodRules);
+					
+				}	
+			}
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null)
+					reader.close();
+			} catch (IOException f) {
+				f.printStackTrace();
+			}
 		}
 	}
 	
