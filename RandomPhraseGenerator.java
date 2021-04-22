@@ -3,12 +3,12 @@ package comprehensive;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class RandomPhraseGenerator {
-	HashMap<String, ArrayList<String>> nonTerminals;
+	HashMap<String, LinkedList<String>> nonTerminals;
 
 	Random rng;
 	BufferedReader reader;
@@ -33,7 +33,7 @@ public class RandomPhraseGenerator {
 				//skips over anything outside a curlybrace
 				if (curr.isBlank() == false && curr.charAt(0) == '{') {
 					String key = reader.readLine();
-					ArrayList<String> prodRules = new ArrayList<>();
+					LinkedList<String> prodRules = new LinkedList<>();
 		
 					curr = reader.readLine();
 					while (curr.charAt(0) != '}') {
@@ -42,7 +42,6 @@ public class RandomPhraseGenerator {
 					}
 					
 					nonTerminals.put(key, prodRules);
-					
 				}	
 			}
 		
@@ -74,7 +73,7 @@ public class RandomPhraseGenerator {
 				
 				//gets the possible productions to replace the nonterminal with
 				String keyString = nonTerminal.subSequence(startIndex, endIndex + 1).toString();
-				ArrayList<String> possibleResults = nonTerminals.get(keyString);
+				LinkedList<String> possibleResults = nonTerminals.get(keyString);
 				
 				//replaces the nonterminal inside our string with a possible production
 				nonTerminal.replace(startIndex, endIndex + 1, possibleResults.get(rng.nextInt(possibleResults.size())));
