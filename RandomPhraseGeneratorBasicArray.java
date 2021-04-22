@@ -8,26 +8,26 @@ import java.util.HashMap;
 import java.util.Random;
 
 
-public class RandomPhraseGeneratorBasicArray {
+public class RandomPhraseGenerator {
 	HashMap<String, String[]> nonTerminals;
 
 	Random rng;
 	BufferedReader reader;
 	
 	public static void main(String[] args) {
-		RandomPhraseGeneratorBasicArray phraseGenerator = new RandomPhraseGeneratorBasicArray(args[0]);
+		RandomPhraseGenerator phraseGenerator = new RandomPhraseGenerator(args[0]);
 		
 		for (int i = 0; i < Integer.parseInt(args[1]); i++)
 			System.out.println(phraseGenerator.getProductions());
 	}
 	
-	public RandomPhraseGeneratorBasicArray(String filename) {
+	public RandomPhraseGenerator(String filename) {
 		nonTerminals = new HashMap<>();
 		rng = new Random();
 		
 		try {
 			File file = new File(filename);
-			reader = new BufferedReader(new FileReader(file));
+			reader = new BufferedReader(new FileReader(filename));
 		
 			String curr;
 			while ((curr = reader.readLine()) != null) {
