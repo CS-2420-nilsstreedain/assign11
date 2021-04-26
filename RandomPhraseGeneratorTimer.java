@@ -10,12 +10,12 @@ public class RandomPhraseGeneratorTimer {
 	public static void main(String[] args) {
 		System.out.println("N\tnanoTime");
 
-		int incr = 100;
-		for (int probSize = 100; probSize <= 1000; probSize += incr) {
+		int incr = 1000;
+		for (int probSize = 1000; probSize <= 10000; probSize += incr) {
 
-			int timesToLoop = 100;
+			int timesToLoop = 1000;
 
-			RuleGenerator.generateRandomGrammar(probSize, 10, 2, .75);
+			RuleGenerator.generateRandomGrammar(1000, probSize, 2, .75);
 			RandomPhraseGenerator rpg = new RandomPhraseGenerator("src/comprehensive/random_grammar.g");
 
 			// First, spin computing stuff until one second has gone by.

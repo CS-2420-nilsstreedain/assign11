@@ -7,7 +7,9 @@ import java.util.Random;
 public class RuleGenerator {
 	
 	public static void main(String[] args) {
-		generateRandomGrammar(10, 10, 2, .75);
+		generateRandomGrammar(10, 10, 5, .75);
+		
+		
 	}
 	
 	public static void generateRandomGrammar(int numNonTerminals, int numProdRules, int nonTerminalPerProd, double percentOfBaseRules) {
@@ -37,7 +39,7 @@ public class RuleGenerator {
 				out.println(i + " " + j);
 	    	for (int j = 0; j < numProdRules - (numProdRules * percentOfBaseRules); j++) {
 	    		for (int k = 0; k < nonTerminalPerProd; k++)
-	    			out.print("<" + rng.nextInt(numNonTerminals) + ">" + " a string ");
+	    			out.print("<" + (rng.nextInt(numNonTerminals - i) + i) + ">" + " a string ");
 				out.println();
     		}
     		out.println("}\n");
