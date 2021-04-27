@@ -16,8 +16,10 @@ public class RandomPhraseGenerator {
 	public static void main(String[] args) {
 		RandomPhraseGenerator phraseGenerator = new RandomPhraseGenerator(args[0]);
 
+		StringBuilder output = new StringBuilder();
 		for (int i = 0; i < Integer.parseInt(args[1]); i++)
-			System.out.println(phraseGenerator.getProductions());
+			output.append(phraseGenerator.getProductions() + "\n");
+		System.out.println(output);
 	}
 
 	public RandomPhraseGenerator(String filename) {

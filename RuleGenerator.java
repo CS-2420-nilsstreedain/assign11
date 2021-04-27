@@ -21,7 +21,7 @@ public class RuleGenerator {
 	      System.out.println(e);
 	    }
 
-	    Random rng = new Random();
+	    Random rng = new Random(1);
 	    
 	    out.println("{\n<start>");
     	for (int j = 0; j < numProdRules * percentOfBaseRules; j++)
