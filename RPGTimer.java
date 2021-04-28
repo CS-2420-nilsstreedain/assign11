@@ -6,7 +6,7 @@ package comprehensive;
  * @author Paul Nuffer & Nils Streedain
  *
  */
-public class RandomPhraseGeneratorTimer {
+public class RPGTimer {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		System.out.println("N\tnanoTime");
