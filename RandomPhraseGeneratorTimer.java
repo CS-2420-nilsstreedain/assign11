@@ -1,12 +1,13 @@
 package comprehensive;
 
 /**
- * 
+ * Testing class for timing RandomPhraseGenerator
  * 
  * @author Paul Nuffer & Nils Streedain
  *
  */
 public class RandomPhraseGeneratorTimer {
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		System.out.println("N\tnanoTime");
 
@@ -34,7 +35,7 @@ public class RandomPhraseGeneratorTimer {
 			// Capture the cost of running the loop and any other operations done
 			// above that are not the essential method call being timed.
 			for (int i = 0; i < timesToLoop; i++) {
-				
+
 			}
 
 			stopTime = System.nanoTime();
